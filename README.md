@@ -20,7 +20,7 @@ yarn
 ## 开发
 
 ``` bash
-# 访问 localhost:8010
+# 启动后访问 localhost:8010
 npm run dev
 ```
 
