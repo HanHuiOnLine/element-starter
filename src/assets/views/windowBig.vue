@@ -1,7 +1,7 @@
 <!--
  * @Author: 韩辉
  * @Date: 2020-03-18 19:18:27
- * @LastEditTime: 2020-03-20 22:27:10
+ * @LastEditTime: 2020-03-21 20:43:12
  * @LastEditors: Please set LastEditors
  * @Description: 总框
  * @FilePath: \element-starter\src\assets\views\windowBig.vue
@@ -18,7 +18,7 @@
           active-text-color	= "#409eff"
           router
         >
-          <el-menu-item index="/timeLine">版本历史</el-menu-item>
+          <el-menu-item index="/homePage">首页</el-menu-item>
           <el-submenu index="2">
             <template slot="title">我的工作台</template>
             <el-menu-item index="2-1">选项1</el-menu-item>
@@ -31,10 +31,8 @@
               <el-menu-item index="2-4-3">选项3</el-menu-item>
             </el-submenu>
           </el-submenu>
-          <el-menu-item index="3">消息中心</el-menu-item>
-          <el-menu-item index="4">
-            <a href="https://www.ele.me" target="_blank">订单管理</a>
-          </el-menu-item>
+          <el-menu-item index="/componentTree">预制件目录</el-menu-item>
+          <el-menu-item index="/timeLine">版本历史</el-menu-item>
         </el-menu>
       </el-header>
       <el-main>
@@ -49,7 +47,7 @@
 export default {
   data() {
     return {
-      activeIndex: "/timeLine"
+      activeIndex: "/homePage"
     };
   },
   methods: {
@@ -61,8 +59,18 @@ export default {
 </script>
 
 <style>
-.el-header {
+.el-header{
   padding: 0;
+}
+.el-main{
+  min-height: 816px;
+  padding: 0;
+}
+.el-footer {
+  background-color: #b3c0d1;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
 }
 </style>
 
