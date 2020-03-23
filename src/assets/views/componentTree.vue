@@ -1,7 +1,7 @@
 <!--
  * @Author: 韩辉
  * @Date: 2020-03-21 14:42:08
- * @LastEditTime: 2020-03-21 20:53:23
+ * @LastEditTime: 2020-03-23 17:35:50
  * @LastEditors: Please set LastEditors
  * @Description: 项目预制件目录
  * @FilePath: \element-starter\src\assets\views\componentTree.vue
@@ -27,6 +27,7 @@
             icon-class="el-icon-folder-opened"
             highlight-current
             ref="tree"
+            @node-click="nodeClick"
           ></el-tree>
         </div>
       </el-aside>
@@ -40,7 +41,7 @@
               <!-- <div slot="header" class="clearfix">
                 <span>成就系统</span>
               </div>-->
-               <h4 style="text-align: center">成就系统</h4>
+              <h4 style="text-align: center">成就系统</h4>
               <div style="color: #5e6d82; font-size=14px">
                 <p>功能描述：</p>
                 <ul>
@@ -57,9 +58,14 @@
                 <!-- 功能截图 -->
                 <div>
                   <p>功能截图：</p>
-                  <el-image
-                    src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
-                  ></el-image>
+                  <div class="img-div">
+                    <el-image :src="detailObj.imgUri">
+                      <div slot="error" class="image-slot">
+                        <p>图片加载失败</p>
+                        <i class="el-icon-loading"></i>
+                      </div>
+                    </el-image>
+                  </div>
                 </div>
               </div>
             </el-card>
@@ -79,9 +85,17 @@ export default {
       this.$refs.tree.filter(val);
     }
   },
+  created() {
+    treeData.getOtherLevel();
+  },
   data() {
     return {
-      filterText: "",
+      filterText: "", //过滤
+      //详情界面的数据
+      detailObj: {
+        imgUri: ""
+      },
+      //树props
       defaultProps: {
         children: "children",
         label: "label",
@@ -94,17 +108,27 @@ export default {
       if (!value) return true;
       return data.label.indexOf(value) !== -1;
     },
+    nodeClick(data, node, component) {
+      let _data = treeData.b[data.id];
+      if (!_data.children) {
+        //没有子集,显示详细信息
+        this.detailObj.imgUri = 'src/assets/images/' + _data.id + '.png';
+      }
+    },
     loadNode(node, resolve) {
       if (node.level === 0) {
         let _list = treeData.getFirstLevel();
         resolve(_list);
-        // return resolve([{ label: "Prefab(预制件)" }]);
-      } else if (node.level === 1) {
-        // let _list = treeData.getFirstLevel();
-        // resolve(_list);
-        return resolve([]);
       } else {
-        return resolve([]);
+        let _data = node.data;
+        if (!_data) {
+          return resolve([]);
+        }
+        let _list = treeData.b[_data.id].children;
+        if (!_list) {
+          return resolve([]);
+        }
+        return resolve(_list);
       }
     }
   }
@@ -130,5 +154,8 @@ export default {
   text-align: left;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+.img-div{
+  text-align: center;
 }
 </style>
