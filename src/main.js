@@ -1,7 +1,7 @@
 /*
  * @Author: 韩辉
  * @Date: 2020-03-18 14:59:24
- * @LastEditTime: 2020-03-20 21:06:22
+ * @LastEditTime: 2020-03-24 17:40:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \src\main.js
@@ -12,9 +12,12 @@ import 'element-ui/lib/theme-chalk/index.css'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import Routers from './router';
+import RichTextDialong from './assets/views/globalComponents/RichTextDialong';
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
+//全局组件
+Vue.component("RichTextDialong", RichTextDialong);
 
 // 路由配置
 const RouterConfig = {

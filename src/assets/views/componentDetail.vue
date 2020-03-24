@@ -1,7 +1,7 @@
 <!--
  * @Author: 韩辉
  * @Date: 2020-03-24 13:49:47
- * @LastEditTime: 2020-03-24 14:55:06
+ * @LastEditTime: 2020-03-24 18:03:14
  * @LastEditors: Please set LastEditors
  * @Description: 预制件详情
  * @FilePath: \element-starter\src\assets\views\componentDetail.vue
@@ -9,7 +9,11 @@
 <template>
   <!-- 路由详情 -->
   <div class="detail-div">
-    <!-- <h4>成就系统</h4> -->
+    <div class="div-btn">
+      <el-button type="primary" icon="el-icon-edit" @click="editFun">修改</el-button>
+      <el-button type="success" icon="el-icon-plus" @click="addFun">添加</el-button>
+      <el-button type="danger" icon="el-icon-delete" @click="deleteFun">删除</el-button>
+    </div>
     <!-- 描述 -->
     <div v-if="treeId" class="detail-des">
       <el-card class="box-card">
@@ -46,10 +50,15 @@
       <!-- 没有数据时的显示 -->
       <p>
         <i class="el-icon-info"></i>
-        左侧树状目录结构依据项目<span>prefab文件夹</span>,当选中的是一个文件夹时,会展示其子文件,当选中的是一个<span>具体的预制件</span>时,
+        左侧树状目录结构依据项目
+        <span>prefab文件夹</span>,当选中的是一个文件夹时,会展示其子文件,当选中的是一个
+        <span>具体的预制件</span>时,
         <br />右侧会显示此预制件的详细信息,包括功能介绍和功能截图
       </p>
     </div>
+
+    <!-- 弹框 -->
+    <RichTextDialog :dialogVisible="dialogVisible" diaTitle="标题"></RichTextDialog>
   </div>
 </template>
 
@@ -63,12 +72,25 @@ export default {
   },
   data() {
     return {
+      dialogVisible: false
     };
   },
   //计算属性
   computed: {
     imgUrl: function() {
       return "src/assets/images/" + this.treeId + ".png";
+    }
+  },
+  methods: {
+    //修改按钮的点击事件
+    editFun() {
+        this.dialogVisible = true;
+    },
+    //删除
+    deleteFun() {},
+    //添加
+    addFun() {
+        this.dialogVisible = true;
     }
   }
 };
@@ -87,7 +109,10 @@ export default {
 .none-div {
   padding: 10px;
 }
-.none-div p span{
-  color: #F56C6C;
+.none-div p span {
+  color: #f56c6c;
+}
+.div-btn {
+  padding: 10px;
 }
 </style>
