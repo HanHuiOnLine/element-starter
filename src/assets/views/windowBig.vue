@@ -1,7 +1,7 @@
 <!--
  * @Author: 韩辉
  * @Date: 2020-03-18 19:18:27
- * @LastEditTime: 2020-03-23 16:44:17
+ * @LastEditTime: 2020-03-26 15:55:28
  * @LastEditors: Please set LastEditors
  * @Description: 总框
  * @FilePath: \element-starter\src\assets\views\windowBig.vue
@@ -11,7 +11,7 @@
     <el-container>
       <el-header>
         <el-menu
-          :default-active="activeIndex"
+          :default-active="this.$route.path"
           class="el-menu-demo"
           mode="horizontal"
           @select="handleSelect"
@@ -35,12 +35,12 @@
 export default {
   data() {
     return {
-      activeIndex: "/homePage"
+      
     };
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      // console.log(key, keyPath);
     }
   }
 };

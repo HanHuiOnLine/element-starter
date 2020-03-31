@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-03-18 14:59:24
- * @LastEditTime: 2020-03-24 16:18:55
+ * @LastEditTime: 2020-03-26 14:55:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \element-starter\README.md
@@ -41,6 +41,6 @@ npm run build
 
 ## 计划
 0. 添加后端
-1. 左侧树状结构添加修改 删除 调整目录结构
+1. 左侧树状结构添加 ***修改 删除 调整目录结构*** 功能
 2. 加入富文本编辑器,添加 ***预制详情*** 添加和修改功能
 3. 版本历史 添加 ***插入新的历史*** 功能

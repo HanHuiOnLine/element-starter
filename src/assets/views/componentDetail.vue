@@ -1,7 +1,7 @@
 <!--
  * @Author: 韩辉
  * @Date: 2020-03-24 13:49:47
- * @LastEditTime: 2020-03-24 18:03:14
+ * @LastEditTime: 2020-03-25 18:46:14
  * @LastEditors: Please set LastEditors
  * @Description: 预制件详情
  * @FilePath: \element-starter\src\assets\views\componentDetail.vue
@@ -58,7 +58,7 @@
     </div>
 
     <!-- 弹框 -->
-    <RichTextDialog :dialogVisible="dialogVisible" diaTitle="标题"></RichTextDialog>
+    <RichTextDialog :catchData="catchData" :content="detail" diaTitle="标题"></RichTextDialog>
   </div>
 </template>
 
@@ -72,7 +72,8 @@ export default {
   },
   data() {
     return {
-      dialogVisible: false
+      dialogVisible: false,
+      detail: ''//文章详情，一般是请求来的
     };
   },
   //计算属性
@@ -84,13 +85,16 @@ export default {
   methods: {
     //修改按钮的点击事件
     editFun() {
-        this.dialogVisible = true;
+        this.$store.dispatch("setDialogVisible", true);
     },
     //删除
     deleteFun() {},
     //添加
     addFun() {
-        this.dialogVisible = true;
+        this.$store.dispatch("setDialogVisible", true);
+    },
+    catchData(data) {
+      
     }
   }
 };

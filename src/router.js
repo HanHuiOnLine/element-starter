@@ -1,7 +1,7 @@
 /*
  * @Author: 韩辉
  * @Date: 2020-03-18 18:08:10
- * @LastEditTime: 2020-03-21 19:57:04
+ * @LastEditTime: 2020-03-26 15:55:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \src\router.js
@@ -12,7 +12,12 @@ const routers = [{
 		title: '大框'
 	},
 	component: (resolve) => require(['./assets/views/windowBig.vue'], resolve),
-	children: [{
+	children: [
+		{
+			path: '/',
+			redirect: '/homePage'
+		},
+		{
 			path: '/homePage',
 			meta: {
 				title: '首页'

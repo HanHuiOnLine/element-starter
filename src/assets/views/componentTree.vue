@@ -1,7 +1,7 @@
 <!--
  * @Author: 韩辉
  * @Date: 2020-03-21 14:42:08
- * @LastEditTime: 2020-03-24 14:48:00
+ * @LastEditTime: 2020-03-26 10:44:48
  * @LastEditors: Please set LastEditors
  * @Description: 项目预制件目录
  * @FilePath: \element-starter\src\assets\views\componentTree.vue
@@ -18,9 +18,8 @@
         </div>
         <div class="font1">
           <el-tree
+            :data="treeData"
             class="filter-tree"
-            :load="loadNode"
-            lazy
             :props="defaultProps"
             accordion
             :filter-node-method="filterNode"
@@ -53,12 +52,13 @@ export default {
     }
   },
   created() {
-    treeData.getOtherLevel();
+    this.treeData = treeData.data;
   },
   data() {
     return {
+      treeData: [],
       filterText: "", //过滤
-      chosedId: "",
+      chosedId: "",   //选中的节点
       //树props
       defaultProps: {
         children: "children",
@@ -73,30 +73,29 @@ export default {
       return data.label.indexOf(value) !== -1;
     },
     nodeClick(data, node, component) {
-      let _data = treeData.b[data.id];
-      if (!_data.children) {
+      if (!data.children) {
         //没有子集,显示详细信息
-        this.chosedId = _data.id;
+        this.chosedId = data.id;
       } else {
         this.chosedId = '';
       }
     },
-    loadNode(node, resolve) {
-      if (node.level === 0) {
-        let _list = treeData.getFirstLevel();
-        resolve(_list);
-      } else {
-        let _data = node.data;
-        if (!_data) {
-          return resolve([]);
-        }
-        let _list = treeData.b[_data.id].children;
-        if (!_list) {
-          return resolve([]);
-        }
-        return resolve(_list);
-      }
-    }
+    // loadNode(node, resolve) {
+    //   if (node.level === 0) {
+    //     let _list = treeData.getFirstLevel();
+    //     resolve(_list);
+    //   } else {
+    //     let _data = node.data;
+    //     if (!_data) {
+    //       return resolve([]);
+    //     }
+    //     let _list = treeData.b[_data.id].children;
+    //     if (!_list) {
+    //       return resolve([]);
+    //     }
+    //     return resolve(_list);
+    //   }
+    // }
   }
 };
 </script>
@@ -115,5 +114,8 @@ export default {
 .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
   background-color: #409eff;
   color: #ffffff;
+}
+.el-tree-node__expand-icon{
+  color: #409EFF;
 }
 </style>
